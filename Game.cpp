@@ -39,9 +39,24 @@ using namespace std;
             if(!check(pet)){
                 add(pet);
                 std::cout << " Your " << pet-> getType() << " " << pet->getName() << "has been adopted!\n";
+                std::cout << "Please press any key to to continue!\n";
+                string key;
+                cin>> key;
+                return false;
+                cout << endl;
                 
+
             }
 
+        }
+        else{
+
+            if(choice==2){
+                string name;
+                std::cout << "______________________________";
+                std::cout << "Congrats you have chosen a cat!\n";
+                std::cout << ""
+            }
         }
 
     }
