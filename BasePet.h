@@ -1,3 +1,5 @@
+#ifndef BASEPET_H
+#define BASEPET_H
 #include <iostream>
 #include <string>
 
@@ -30,3 +32,4 @@ class BasePet {
 };
 
 #endif
+

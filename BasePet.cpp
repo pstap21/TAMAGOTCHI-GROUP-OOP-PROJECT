@@ -3,4 +3,4 @@
 
 
 BasePet :: BasePet( const std::string& name, int age, int happiness) :
-name(name), age(age), happiness(happiness) {}
+name(name), age(age) {}
