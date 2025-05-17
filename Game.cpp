@@ -1,9 +1,14 @@
 #include "Game.h"
+#include "Game.h"
+#include "Dog.h"    // Include in cpp file
+#include "Cat.h"
+#include "Bird.h"
 #include <iostream>
+
 
 using namespace std;
 
-    void showWelcomeMenu() {
+    void show_main_menu() {
         std::cout << " -----------------------\n" ;
         std::cout << "Welcome to the Adoption Centre\n" ;
         std::cout << " -----------------------\n" ;
@@ -14,7 +19,7 @@ using namespace std;
 
     }
 //if 1) is chosen, a new game is started 
-    void showChoiceMenu () {
+    void show_choice_menu () {
         std::cout << "------Welcome to the Adoption Centre-------\n";
         std::cout << "What pet would you like to own?\n" ;
         std::cout << "Enter 1 for Dog\n";
@@ -24,40 +29,53 @@ using namespace std;
         int choice;
         cin >> choice;
 
-        if (choice ==1){
-            string name;
-            cout << endl << "___________________________________";
-            cout << endl << endl << "Congrats you have chosen a Dog! They are loyal companions and love attention"<< endl << endl;
-            // below will be listed attributes about the dogs hunger, happiness and sleep levels. All types of pets will evolve equally once they reach certain levels
-            std::cout << "As dogs are naturally much happier animals, they will start the game with 100 happiness\n";
-            std::cout << "Because of their happiness, they always seem to be hungry, so they will start the game with a hunger level of 50\n";
-            std::cout << "What would you like to name your new companion?\n";
+        string name;
+        BasePet* new_pet = nullptr;//initilise ptr to nullptr
 
-            cin >> name;
-
-            pet = new Dog (name, "Dog");
-            if(!check(pet)){
-                add(pet);
-                std::cout << " Your " << pet-> getType() << " " << pet->getName() << "has been adopted!\n";
-                std::cout << "Please press any key to to continue!\n";
-                string key;
-                cin>> key;
-                return false;
-                cout << endl;
-                
-
-            }
-
-        }
-        else{
-
-            if(choice==2){
-                string name;
-                std::cout << "______________________________";
-                std::cout << "Congrats you have chosen a cat!\n";
-                std::cout << ""
-            }
-        }
-
-    }
+        //create a switch statement for cleaner code
+        switch (choice) {
+            case 1:
+                cout << "\nCongrats! You have chosen a Dog!\n";
+                cout << "Dogs start with 100 happiness and 50 hunger.\n";
+                cout << "What would you like to name your dog?\n";
+                cin >> name;
+                new_pet = new Dog(name);  // Create Dog object dynamically
+                break;
     
+            case 2:
+                cout << "\nCongrats! You have chosen a Cat!\n";
+                cout << "Cats start with 80 happiness and 40 hunger.\n";
+                cout << "What would you like to name your cat?\n";
+                cin >> name;
+                new_pet = new Cat(name);  // Create Cat object dynamically
+                break;
+    
+            case 3:
+                cout << "\nCongrats! You have chosen a Bird!\n";
+                cout << "Birds start with 90 happiness and 30 hunger.\n";
+                cout << "What would you like to name your bird?\n";
+                cin >> name;
+                new_pet = new Bird(name);  // Create Bird object dynamically
+                break;
+    
+            default:
+                cout << "Invalid choice. Please try again.\n";
+                return;  // exit function early
+        }
+
+        //create a new pet and safely remove old one of neccesary
+        if (new_pet) {
+            if (pet) {
+                delete pet;   // delete old pet to avoid memory leak
+            }
+            pet = new_pet;
+    
+            cout << "Your " << pet->get_type() << " named " << pet->get_name() << " has been adopted!\n";
+            cout << "Press any key to continue...\n";
+            string key;
+            cin >> key;
+            cout << endl;
+        }
+    }
+
+//theres errors as the bird and cat files have not been created yet. 

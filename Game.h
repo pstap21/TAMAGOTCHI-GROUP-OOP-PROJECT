@@ -1,15 +1,17 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <string>
 #include "BasePet.h"
 
 class Game {
     private:
-
-    std::unique_ptr<BasePet> pet;
+    BasePet* pet;  // raw pointer to BasePet (manage memory manually)
     bool is_running;
 
     void show_main_menu();
+    void show_choice_menu();
+
     void process_input( const std::string& input);
     void update();
     void end_game();
@@ -17,9 +19,8 @@ class Game {
     public:
 
     Game();
+    ~Game();  // destructor to delete pet pointer
     void start();
-
-
 };
 
-#endif
+#endif // GAME_H
