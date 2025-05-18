@@ -4,7 +4,7 @@
 using namespace std;
 
 // Constructor implementation
-Dog::Dog(const std::string& name) : BasePet(name, 0) { // Call BasePet constructor, age 0
+Dog::Dog(const string& name) : BasePet(name) { // Call BasePet constructor
     // Set starting stats specific to Dogs
     // For example, if BasePet has setters for happiness and hunger, call them here:
     // set_happiness(100);
@@ -19,7 +19,7 @@ void Dog::update_status() {
 }
 
 // This method reacts to player actions (e.g., feed, play)
-void Dog::perform_action(const std::string& action) {
+void Dog::perform_action(const string& action) {
     // Implement logic based on the action string
     // Example: if action is "feed", reduce hunger
     cout << "Dog performs action: " << action << endl;
@@ -42,13 +42,13 @@ bool Dog::check_evolution() const {
 }
 
 // Evolve returns a pointer to a new evolved pet or nullptr if no evolution
-BasePet* Dog::evolve() {
+unique_ptr<BasePet> Dog::evolve() {
     cout << "Evolving Dog into next stage...\n";
     // If evolution criteria met, create and return new evolved pet object
     return nullptr; // Placeholder: no evolution implemented yet
 }
 
 // Returns the string "Dog" identifying this pet type
-std::string Dog::get_type() const {
+string Dog::get_type() const {
     return "Dog";
 }
