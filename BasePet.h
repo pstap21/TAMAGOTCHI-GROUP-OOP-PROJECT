@@ -1,31 +1,35 @@
 #ifndef BASEPET_H
 #define BASEPET_H
-#include <iostream>
-#include <string>
+
+#include "Stats.h"
 
 using namespace std;
 
 class BasePet {
     private:
-    std::string name;
+    string name;
     int age;
-    bool is_alive
+    bool is_alive;
     Stats stats;
 
     public:
-    BasePet( const std::string& name, int age = 0, int happiness = 0);//constructor
+    BasePet(const string& name);//constructor
     virtual ~BasePet() = default;//destructor
 
 
     virtual void update_status();
-    virtual void perform_action(const std::string& action);
-    virtual bool check_alive() const;
-    virtual bool check_evolution() const = 0;
-    virtual std::unique_ptr<BasePet> evolve() = 0;
-    virtual std::string get_type() const = 0;
-
     void print_status() const;
-    std::string get_name() const;
+
+    virtual bool check_evolution() const = 0;
+    virtual bool check_alive() const;
+    virtual void perform_action(const string& action);
+    virtual unique_ptr<BasePet> evolve() = 0;
+    virtual string get_type() const = 0;
+
+    string get_name() const;
+    int get_age() const;
+    bool get_is_alive() const;
+    Stats get_stats() const;
 
 
 

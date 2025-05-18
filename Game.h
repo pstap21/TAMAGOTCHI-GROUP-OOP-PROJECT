@@ -5,7 +5,8 @@
 #include "BasePet.h"
 
 class Game {
-    private:
+
+private:
     BasePet* pet;  // raw pointer to BasePet (manage memory manually)
     bool is_running;
 
@@ -16,8 +17,7 @@ class Game {
     void update();
     void end_game();
 
-    public:
-
+public:
     Game();
     ~Game();  // destructor to delete pet pointer
     void start();

@@ -4,15 +4,15 @@
 #include <chrono>
 
 class Timer {
-    private:
+
+private:
     std::chrono::time_point<std::chrono::steady_clock>  last_time;
 
-    public:
+public:
     Timer();
     double elapsed_seconds();
     void reset();
-
-
+    
 };
 
 #endif

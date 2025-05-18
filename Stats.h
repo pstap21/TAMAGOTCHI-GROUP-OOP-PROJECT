@@ -1,23 +1,26 @@
 #ifndef STATS_H
 #define STATS_H
 
+#include <string>
+
 using namespace std;
 
 class Stats {
-    private:
+
+private:
+    int health;
     int hunger;
+    int energy;
     int happiness;
     int cleanliness;
-    int health;
-    int energy;
-
-    public:
+    
+public:
     Stats();
 
-    void decay(double rate = 1.2);
-    void change_state( const std::string& stat, int value);
+    void decay();
+    void change_state(const string& stat, int value);
     void display() const;
-    int get_stat(const std::string& stat) const;
+    int get_stat(const string& stat) const;
 
 
 };

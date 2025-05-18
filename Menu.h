@@ -1,12 +1,13 @@
 #ifndef MENU_H
 #define MENU_H
-#include <iostream>
 
+#include <iostream>
 
 using namespace std;
 
 class Menu {
-    public:
+
+public:
     bool menu();
     bool play();
     bool nextHour();
