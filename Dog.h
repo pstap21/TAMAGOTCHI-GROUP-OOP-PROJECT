@@ -9,7 +9,7 @@ class Dog : public BasePet {
 public:
     // Constructor: initializes a Dog object with a given name
     // It will also set default stats for a Dog (e.g., happiness, hunger)
-    Dog(const string& name);
+    Dog(const std::string& name);
 
     // Override BasePet virtual functions to provide Dog-specific behavior:
 
@@ -26,10 +26,10 @@ public:
     bool check_evolution() const override;
 
     // evolve will return a pointer to a new evolved BasePet object (or nullptr if no evolution)
-    unique_ptr<BasePet> evolve() override;
+    std::unique_ptr<BasePet> evolve() override;
 
     // get_type returns the type of pet as a string, e.g., "Dog"
-    string get_type() const override;
+    std::string get_type() const override;
 };
 
 #endif

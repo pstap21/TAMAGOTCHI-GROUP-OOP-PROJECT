@@ -14,14 +14,22 @@ Stats dog_stats;
 dog_stats.set_hunger(50);
 dog_stats.set_happiness(100);
 dog_stats.set_health(100);
+dog_stats.set_energy(80);
+dog_stats.set_cleanliness(50);
 set_stats(dog_stats); //gets dogs inital stats with BasePets setter
 }
 
 // This method is called to update the dog's status as the game progresses
 void Dog::update_status() {
-    hunger += 5;
-    happiness -=3;
-    age += 1;
+    cout << "Updating Dog Status...\n";
+    Stats s = get_stats();
+    s.change_hunger(5); //increased hunger
+    s.change_happiness(-2);
+    s.change_energy(-2);
+    s.change_cleanliness(-5);
+    
+
+ 
 
     if (hunger > 100) hunger = 100;
     if (happiness < 0) happiness = 0;

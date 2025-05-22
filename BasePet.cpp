@@ -7,9 +7,13 @@ BasePet::BasePet(const string& name)
 
 void BasePet::update_status() {}//default to do nothing
 
-void BasePet::perform_action(const string& action) {}
+void BasePet::perform_action(const string& action) {
+    //implementation does nothing
+}
 
-bool BasePet::check_alive() const {}
+bool BasePet::check_alive() const {
+    return is_alive;
+}
 
 void BasePet::print_status() const {
     cout << "Pet: " << name << "\n";
@@ -18,27 +22,36 @@ void BasePet::print_status() const {
     cout << "Alive: " << (is_alive ? "Yes" : "No") << "\n";
     cout << "Hunger: " << stats.get_hunger() << "\n";
     cout << "Happiness: " << stats.get_happiness() << "\n";
-    out << "Health: " << stats.get_health() << "\n";
-    out << "Energy: " << stats.get_energy() << "\n";
-    out << "Cleanliness: " << stats.get_cleanliness() << "\n";
+    cout << "Health: " << stats.get_health() << "\n";
+    cout << "Energy: " << stats.get_energy() << "\n";
+    cout << "Cleanliness: " << stats.get_cleanliness() << "\n";
 
 
 }
 
-string BasePet::get_name() const {}
+string BasePet::get_name() const {
+    return name;
+}
     
-int BasePet::get_age() const {}
+int BasePet::get_age() const {
+    return age;
+}
 
-bool BasePet::get_is_alive() const {}
+bool BasePet::get_is_alive() const {
+    return is_alive;
+}
 
 void BasePet::set_stats(const Stats& new_stats) {
     stats = new_stats;
 
 }
 
-void Base::set_stat(const string& stat_name, int value){
+void BasePet::set_stat(const string& stat_name, int value){
     if (stat_name == "hunger") stats.set_hunger(value);
     else if (stat_name == "happiness") stats.set_happiness(value);
     else if (stat_name == "health") stats.set_health(value);
+    else if (stat_name == "energy") stats.set_energy(value);
+    else if (stat_name == "cleanliness") stats.set_cleanliness(value);
 
-}
+};
+
