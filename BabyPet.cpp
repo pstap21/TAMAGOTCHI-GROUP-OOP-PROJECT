@@ -1,5 +1,7 @@
 #include "BabyPet.h"
 
+
+
 BabyPet::BabyPet(const string& name) : BasePet(name) {}
 
 void BabyPet::update_status() {}

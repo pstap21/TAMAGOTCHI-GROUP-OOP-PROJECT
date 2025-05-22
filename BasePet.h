@@ -33,6 +33,13 @@ class BasePet {
 
 
 
+    void set_stats(const Stats& new_stats);
+    void set_stat(const string& stat_name, int value);
+
+ 
+
+
+
 };
 
 #endif

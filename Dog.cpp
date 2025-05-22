@@ -10,10 +10,21 @@ Dog::Dog(const string& name) : BasePet(name) { // Call BasePet constructor
     // set_happiness(100);
     // set_hunger(50);
     // These values are chosen because dogs are generally happier but hungrier
+Stats dog_stats;
+dog_stats.set_hunger(50);
+dog_stats.set_happiness(100);
+dog_stats.set_health(100);
+set_stats(dog_stats); //gets dogs inital stats with BasePets setter
 }
 
 // This method is called to update the dog's status as the game progresses
 void Dog::update_status() {
+    hunger += 5;
+    happiness -=3;
+    age += 1;
+
+    if (hunger > 100) hunger = 100;
+    if (happiness < 0) happiness = 0;
     // Here you could decrease hunger over time, adjust happiness, etc.
     cout << "Updating Dog status: adjusting hunger and happiness levels over time.\n";
 }
@@ -31,7 +42,7 @@ bool Dog::check_alive() const {
     // If hunger is too high or health too low, return false
     // Otherwise, true
     cout << "Checking if Dog is alive based on health and hunger...\n";
-    return true; // Placeholder: replace with actual checks
+    return hunger < 100 && health > 0; // Placeholder: replace with actual checks
 }
 
 // Check if the dog can evolve (e.g., reached certain age or happiness)
