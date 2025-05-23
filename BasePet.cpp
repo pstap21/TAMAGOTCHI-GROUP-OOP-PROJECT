@@ -1,6 +1,8 @@
 #include <iostream>
 #include "BasePet.h"
 
+using namespace std;
+
 
 BasePet::BasePet(const string& name)
  : name(name), age(0), is_alive(true), stats() {}

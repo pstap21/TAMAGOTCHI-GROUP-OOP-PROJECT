@@ -29,6 +29,14 @@ public:
     void set_energy(int h) {energy = h;}
     void set_cleanliness(int h) {cleanliness = h;}
 
+    //modifiers
+    void change_hunger(int delta);
+    void change_happiness(int delta);
+    void change_energy(int delta);
+    void change_cleanliness(int delta);
+    void change_health(int delta);
+
+
 
     // void decay();
     // void change_state(const string& stat, int value);
