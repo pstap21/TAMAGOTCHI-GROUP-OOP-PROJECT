@@ -1,5 +1,6 @@
 #include "Dog.h"
 #include <iostream>
+#include <memory>
 
 using namespace std;
 
@@ -66,11 +67,10 @@ void Dog::perform_action(const string& action) {
     set_stats(s);
 
     }
-    // Implement logic based on the action string
-    // Example: if action is "feed", reduce hunger
-    cout << "Dog performs action: " << action << endl;
+    
+    std::cout << "Dog performs action: " << action << endl;
     // Modify stats here accordingly
-}
+
 
 // This checks if the dog is still alive
 bool Dog::check_alive() const {

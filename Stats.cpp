@@ -1,8 +1,13 @@
 #include "Stats.h"
+#include <memory>
+#include "BasePet.h"
 
 // Constructor
+// Constructor
 Stats::Stats(int hunger, int happiness, int health, int cleanliness, int energy)
-    : hunger(hunger), happiness(happiness), health(health) {}
+    : hunger(hunger), happiness(happiness), health(health),
+      cleanliness(cleanliness), energy(energy) {}
+
 
 // Getters
 int Stats::get_hunger() const { return hunger; }

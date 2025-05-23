@@ -1,6 +1,6 @@
 #ifndef HAT_H
 #define CAT_H
-
+#include <memory>
 #include "BasePet.h"
 #include <string>
 #include <iostream>

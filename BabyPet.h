@@ -1,6 +1,7 @@
 #ifndef BABYPET_H
 #define BABYPET_H
 
+#include <memory>
 #include "BasePet.h"
 
 class BabyPet : public BasePet {

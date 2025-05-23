@@ -1,6 +1,7 @@
 #ifndef BASEPET_H
 #define BASEPET_H
 
+#include <memory>
 #include "Stats.h"
 
 using namespace std;
@@ -31,6 +32,7 @@ class BasePet {
     bool get_is_alive() const;
     Stats get_stats() const;
 
+    void set_stats(const string& stat_name, int value);
 
 
     void set_stats(const Stats& new_stats);

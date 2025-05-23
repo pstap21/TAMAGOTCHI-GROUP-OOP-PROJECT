@@ -1,6 +1,6 @@
 #ifndef DOG_H
 #define DOG_H
-
+#include <memory>
 #include "BasePet.h"
 #include <string>
 

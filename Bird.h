@@ -1,6 +1,7 @@
 #ifndef BIRD_H
 #define BIRD_H
 
+#include <memory>
 #include "BasePet.h"
 #include <string>
 

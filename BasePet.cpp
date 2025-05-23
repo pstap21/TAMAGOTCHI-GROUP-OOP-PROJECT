@@ -1,6 +1,6 @@
 #include <iostream>
 #include "BasePet.h"
-
+#include <memory>
 using namespace std;
 
 
@@ -43,12 +43,12 @@ bool BasePet::get_is_alive() const {
     return is_alive;
 }
 
-void BasePet::set_stats(const Stats& new_stats) {
-    stats = new_stats;
+// void BasePet::set_stats(const Stats& new_stats) {
+//     stats = new_stats;
 
-}
 
-void BasePet::set_stat(const string& stat_name, int value){
+
+void BasePet::set_stats(const string& stat_name, int value){
     if (stat_name == "hunger") stats.set_hunger(value);
     else if (stat_name == "happiness") stats.set_happiness(value);
     else if (stat_name == "health") stats.set_health(value);

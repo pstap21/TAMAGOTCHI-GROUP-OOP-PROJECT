@@ -15,7 +15,8 @@ private:
     int cleanliness;
     
 public:
-    Stats(): hunger(0), happiness(0), health(0) {}
+    Stats(int hunger = 50, int happiness = 50, int health = 50,
+          int cleanliness = 50, int energy = 50);
 
     int get_hunger() const {return hunger;}
     int get_happiness() const {return happiness;}

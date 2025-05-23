@@ -1,6 +1,6 @@
 #include "Cat.h"
 #include <iostream>
-
+#include <memory>
 using namespace std;
 
 Cat::Cat(const string& name) : BasePet(name) {

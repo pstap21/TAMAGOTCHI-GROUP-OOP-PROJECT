@@ -4,7 +4,7 @@
 #include "Bird.h"
 #include <iostream>
 
-
+#include <memory>
 using namespace std;
 
 void Game::show_main_menu() {
