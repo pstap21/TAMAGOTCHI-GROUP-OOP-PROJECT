@@ -86,7 +86,7 @@ bool Dog::check_evolution() const {
     Stats s = get_stats();
     return s.get_happiness() > 90;
     // Return true if criteria met
-    cout << "Checking if Dog meets evolution criteria...\n";
+    std::cout << "Checking if Dog meets evolution criteria...\n";
     return false; // Placeholder: no evolution implemented yet
 }
 

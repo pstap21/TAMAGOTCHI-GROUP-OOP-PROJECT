@@ -27,10 +27,10 @@ public:
     bool check_evolution() const override;
 
     // evolve will return a pointer to a new evolved BasePet object (or nullptr if no evolution)
-    unique_ptr<BasePet> evolve() override;
+    std::unique_ptr<BasePet> evolve() override;
 
     // get_type returns the type of pet as a string, e.g., "Bird"
-    string get_type() const override;
+    std::string get_type() const override;
 
 };
 
