@@ -1,4 +1,7 @@
 #include "TeenDog.h"
+#include "AdultDog.h"
+#include "BasePet.h"
+#include "Stats.h"
 #include <iostream>
 #include <memory>
 
@@ -14,9 +17,16 @@ TeenDog::TeenDog (const string&name) : BasePet(name) {
     teen_stats.set_cleanliness(60);
     set_stats(teen_stats);
 
-    cout << name << "has evolved into a Teen Dog!\n";
 
-
+}
+void TeenDog::update_status() {
+    Stats s = get_stats();
+    s.change_hunger(4);
+    s.change_happiness(-3);
+    s.change_energy(-4);
+    s.change_cleanliness(-4);
+    s.change_health(-2);
+    set_stats(s);
 }
 
 void TeenDog::perform_action(const string&action) {
@@ -40,13 +50,22 @@ void TeenDog::perform_action(const string&action) {
     set_stats(s);
 
     }
+    bool TeenDog::check_alive() const {
+    Stats s = get_stats();
+    return s.get_hunger() < 100 && s.get_health() > 0;
+
+    }
+
     bool TeenDog::check_evolution() const {
-    // add adult dog evolution
-    return false;
+    
+    return get_age() >=30 && get_stats().get_happiness() >= 90;
 }
 
 unique_ptr<BasePet> TeenDog::evolve() {
-    // add adult dog evolution
+    if(check_evolution()) {
+        std::cout << get_name() << "is evolving into an adult dog!!\n";
+        return std::make_unique<AdultDog>(get_name());
+    }
     return nullptr;
 }
 

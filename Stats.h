@@ -39,12 +39,6 @@ public:
 
 
 
-    // void decay();
-    // void change_state(const string& stat, int value);
-    // void display() const;
-    // int get_stat(const string& stat) const;
-
-
 };
 
 #endif

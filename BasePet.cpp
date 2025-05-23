@@ -43,6 +43,10 @@ bool BasePet::get_is_alive() const {
     return is_alive;
 }
 
+Stats BasePet::get_stats() const {
+    return stats;
+    
+}
 // void BasePet::set_stats(const Stats& new_stats) {
 //     stats = new_stats;
 
