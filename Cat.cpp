@@ -31,7 +31,7 @@ void Cat::perform_action(const string& action) {
         std::cout << "You fed the cat. It purrs softly.\n";
     } else if (action == "pet") {
         s.change_happiness(6);
-        s.get_cleanliness(-5);
+        s.change_cleanliness(-5);
         std::cout << "You pet the cat. It may or may not like it.\n";
     } else if (action == "play") {
         s.change_happiness(8);
@@ -55,14 +55,13 @@ bool Cat::check_alive() const {
 
 bool Cat::check_evolution() const {
     Stats s = get_stats();
-    return s.get_happiness() >= 90;
     std::cout << "Checking if Cat meets evolution criteria...\n";
-    return false;
+    return get_age() >= 13 && get_stats().get_happiness() >=80;
 }
 
 std::unique_ptr<BasePet> Cat::evolve() {
     if (check_evolution()) {
-         std::cout << "Evolving Cat into next stage...\n";
+         std::cout << get_name() << "is evolving into next stage...\n";
     
     }
     return nullptr;

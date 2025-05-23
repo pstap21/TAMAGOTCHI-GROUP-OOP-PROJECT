@@ -40,7 +40,7 @@ void Bird::perform_action(const string& action) {
         cout << "You sang to the bird. It chirped along!\n";
     } else if (action == "fly") {
         s.change_happiness(5);
-        s.change_hunger(4)
+        s.change_hunger(4);
         s.change_energy(-5);
         cout << "You let the bird fly around. It feels free.\n";
     } else if (action == "sleep") {
@@ -66,13 +66,14 @@ bool Bird::check_alive() const {
 bool Bird::check_evolution() const {
     Stats s = get_stats();
     cout << "Checking if Bird meets evolution criteria...\n";
-    return s.get_happiness() >= 80 && get_age() >=3; 
+    return get_age() >= 13 && get_stats().get_happiness() >= 80;
+
 }
 
 // Evolve returns a pointer to a new evolved pet or nullptr if no evolution
 unique_ptr<BasePet> Bird::evolve() {
     if (check_evolution()) {
-    cout << "Evolving Bird into next stage...\n";
+    cout << get_name() << "is evolving into next stage...\n";
     }
     // If evolution criteria met, create and return new evolved pet object
     return nullptr; 

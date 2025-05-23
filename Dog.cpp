@@ -29,19 +29,14 @@ void Dog::update_status() {
     s.change_energy(-2);
     s.change_cleanliness(-5);
     s.change_health(5);
+
+    set_stats(s);
 }
     
 
- 
-
-//     if (hunger > 100) hunger = 100;
-//     if (happiness < 0) happiness = 0;
-//     // Here you could decrease hunger over time, adjust happiness, etc.
-//     cout << "Updating Dog status: adjusting hunger and happiness levels over time.\n";
-// }
-
 // This method reacts to player actions (e.g., feed, play)
 void Dog::perform_action(const string& action) {
+     std::cout << "Dog performs action: " << action << endl;
     Stats s = get_stats();
 
     if(action =="feed"){
@@ -61,21 +56,21 @@ void Dog::perform_action(const string& action) {
         std::cout << "You washed the dog. He's covered in soapy bubbles!!\n";
 
     } else {
-        std::cout << "Invalid action. Try again!\n"
+        std::cout << "Invalid action. Try again!\n";
     }
 
     set_stats(s);
 
     }
     
-    std::cout << "Dog performs action: " << action << endl;
+   
     // Modify stats here accordingly
 
 
 // This checks if the dog is still alive
 bool Dog::check_alive() const {
     Stats s = get_stats();
-    out << "Checking if Dog is alive based on health and hunger...\n";
+    std::cout << "Checking if Dog is alive based on health and hunger...\n";
     return s.get_hunger() < 100 && s.get_health() > 0;
 
     
@@ -84,16 +79,15 @@ bool Dog::check_alive() const {
 // Check if the dog can evolve (e.g., reached certain age or happiness)
 bool Dog::check_evolution() const {
     Stats s = get_stats();
-    return s.get_happiness() > 90;
-    // Return true if criteria met
+
     std::cout << "Checking if Dog meets evolution criteria...\n";
-    return false; // Placeholder: no evolution implemented yet
+    return get_age() >= 13 && get_stats().get_happiness() >= 80;;
 }
 
 // Evolve returns a pointer to a new evolved pet or nullptr if no evolution
 unique_ptr<BasePet> Dog::evolve() {
     if (check_evolution()) {
-    std::cout << "Evolving Dog into next stage...\n";
+    std::cout << get_name() << "is evolving into next stage...\n";
     }
     // If evolution criteria met, create and return new evolved pet object
     return nullptr; // Placeholder: no evolution implemented yet
