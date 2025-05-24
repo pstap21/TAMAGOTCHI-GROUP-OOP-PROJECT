@@ -2,13 +2,15 @@
 #define GAME_H
 
 #include <string>
+#include <memory>
 #include "BasePet.h"
 
 class Game {
 
 private:
-    BasePet* pet;  // raw pointer to BasePet (manage memory manually)
-    bool is_running;
+  std::unique_ptr<BasePet> current_pet;
+  bool game_over;
+  
 
     void show_main_menu();
     void show_choice_menu();
