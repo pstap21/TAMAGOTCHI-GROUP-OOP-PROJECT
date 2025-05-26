@@ -2,6 +2,11 @@
 #include "BabyDog.h"   
 #include "BabyCat.h"
 #include "BabyBird.h"
+#include "Stats.h"
+#include "BasePet.h"
+#include "Cat.h"
+#include "Dog.h"
+#include "Bird.h"
 #include <iostream>
 
 #include <memory>
@@ -45,7 +50,7 @@ BasePet* Game::show_choice_menu () {
     
         default:
             cout << "Invalid choice. Please try again.\n";
-            return;  // exit function early
+            return 0;  // exit function early
     }
 
 
@@ -189,4 +194,13 @@ Game::Game(BasePet* pet) {
     }
 
     end_game();
-}
+
+   
+
+
+    }
+
+ Game::~Game() {
+        //no destuctor needed
+
+    }

@@ -1,7 +1,7 @@
-#include "Timer.h"
+// #include "Timer.h"
 
-Timer::Timer() {}
+// Timer::Timer() {}
 
-double Timer::elapsed_seconds() {}
+// double Timer::elapsed_seconds() {}
 
-void Timer::reset() {}
+// void Timer::reset() {}

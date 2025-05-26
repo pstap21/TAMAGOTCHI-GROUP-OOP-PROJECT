@@ -11,15 +11,17 @@ class Game {
 
 private:
   unique_ptr<BasePet> current_pet;
-  bool game_over;
+  bool running;
   
-  BasePet* show_choice_menu();
+ 
 
   void process_input(const string& input);
   void update(BasePet* pet);
   void end_game();
 
 public:
+
+ BasePet* show_choice_menu();
   Game(BasePet* pet);
   ~Game();  // destructor to delete pet pointer
   void start();

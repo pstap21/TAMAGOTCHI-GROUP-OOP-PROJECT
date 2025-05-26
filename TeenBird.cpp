@@ -45,7 +45,7 @@ void TeenBird::perform_action(const string&action) {
         s.change_cleanliness(10);
         cout << "You washed" << get_name() << " " << ". They are now sparkling clean!!\n";
     } else  {
-        "Action not supported, try again.\n";
+        cout << "Action not supported, try again.\n";
     }
     set_stats(s);
 

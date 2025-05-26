@@ -47,13 +47,18 @@ void TeenCat::perform_action(const string&action) {
         s.change_cleanliness(10);
         cout << "You washed" << get_name() << " " << ". They are now sparkling clean!!\n";
     } else  {
-        "Action not supported, try again.\n";
+        cout << "Action not supported, try again.\n";
     }
     set_stats(s);
 
     }
     bool TeenCat::check_evolution() const { 
     return get_age() >= 15 && get_stats().get_happiness() >= 90;
+}
+
+bool TeenCat::check_alive() const {
+    Stats s = get_stats();
+    return s.get_hunger() < 100 && s.get_health() > 0;
 }
 
 unique_ptr<BasePet> TeenCat::evolve() {

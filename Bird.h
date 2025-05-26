@@ -25,7 +25,7 @@ public:
     bool check_alive() const override;
 
     // check_evolution will return true if the bird meets the criteria to evolve
-    virtual bool check_evolution() const = 0;
+    bool check_evolution() const override;
 
     // evolve will return a pointer to a new evolved BasePet object (or nullptr if no evolution)
     std::unique_ptr<BasePet> evolve() override;
