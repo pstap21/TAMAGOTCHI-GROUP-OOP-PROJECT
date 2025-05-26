@@ -5,7 +5,7 @@
 #include <iostream>
 #include <memory>
 
-AdultDog::AdultDog(const std::string& name) : Dog(name, 15) {
+AdultDog::AdultDog(const string& name) : Dog(name, 15) {
     Stats stats;
     stats.set_hunger(30);
     stats.set_happiness(85);
@@ -25,7 +25,7 @@ void AdultDog::update_status() {
     age++;
 }
 
-void AdultDog::perform_action(const std::string& action) {
+void AdultDog::perform_action(const string& action) {
     Stats s = get_stats();
 
     if (action == "feed") {
@@ -55,10 +55,10 @@ bool AdultDog::check_evolution() const {
     return false;
 }
 
-std::unique_ptr<BasePet> AdultDog::evolve() {
+unique_ptr<BasePet> AdultDog::evolve() {
     return nullptr; // nil further evolution
 }
 
-std::string AdultDog::get_type() const {
+string AdultDog::get_type() const {
     return "Adult Dog";
 }

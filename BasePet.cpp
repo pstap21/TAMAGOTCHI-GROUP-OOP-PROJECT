@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 BasePet::BasePet(const string& name, int age)
  : name(name), age(age), is_alive(true), stats() {}
 

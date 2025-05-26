@@ -10,9 +10,9 @@ class BabyBird : public Bird {
 
 public:
 
-    BabyBird(const std::string& name);
+    BabyBird(const string& name);
     void update_status() override;
-    void perform_action(const std::string& action) override;
+    void perform_action(const string& action) override;
     unique_ptr<BasePet> evolve() override;
     string get_type() const override;
     bool check_evolution() const override;

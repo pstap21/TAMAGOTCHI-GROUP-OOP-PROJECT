@@ -6,17 +6,20 @@
 #include <string>
 #include <memory>
 
-class AdultDog : public Dog {
-    public:
+using namespace std;
 
-    AdultDog(const std::string& name);
+class AdultDog : public Dog {
+
+public:
+
+    AdultDog(const string& name);
 
     void update_status() override;
     void perform_action(const std::string& action) override;
     bool check_alive() const override;
     bool check_evolution() const override;
-    std::unique_ptr<BasePet> evolve() override;
-    std::string get_type() const override;
+    unique_ptr<BasePet> evolve() override;
+    string get_type() const override;
 };
 
 #endif
