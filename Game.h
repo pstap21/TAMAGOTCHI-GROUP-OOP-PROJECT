@@ -13,14 +13,14 @@ private:
   unique_ptr<BasePet> current_pet;
   bool game_over;
   
-  void show_choice_menu();
+  BasePet* show_choice_menu();
 
   void process_input(const string& input);
-  void update();
+  void update(BasePet* pet);
   void end_game();
 
 public:
-  Game();
+  Game(BasePet* pet);
   ~Game();  // destructor to delete pet pointer
   void start();
 };

@@ -7,7 +7,7 @@
 #include <memory>
 using namespace std;
 
-void Game::show_choice_menu () {
+BasePet* Game::show_choice_menu () {
     cout << "------Welcome to the Adoption Centre-------\n";
     cout << "What pet would you like to own?\n" ;
     cout << "Enter 1 for Dog\n";
@@ -55,4 +55,47 @@ void Game::show_choice_menu () {
     string key;
     cin >> key;
     cout << endl;
+
+    return new_pet;
+}
+
+void Game::update(BasePet* pet) {
+    pet->update_status();
+}
+
+void Game::end_game() {
+    cout << "Your pet has died. Game over!" << endl;
+}
+
+Game::Game(BasePet* pet) {
+    while (pet->check_alive() == true) {
+        cout << "Do you want to feed, clean, or play with your " << pet->get_type() << endl;
+        cout << "Enter 1 for feed" << endl;
+        cout << "Enter 2 for clean" << endl;
+        cout << "Enter 3 for play" << endl;
+
+        int choice;
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            cout << "You have chosen to feed your " << pet->get_type() << " !" << endl;
+            pet->perform_action("feed");
+            break;
+    
+        case 2:
+            cout << "You have chosen to clean your " << pet->get_type() << " !" << endl;
+            pet->perform_action("clean");
+            break;
+    
+        case 3:
+            cout << "You have chosen to play with your " << pet->get_type() << " !" << endl;
+            pet->perform_action("play");
+            break;
+    
+        default:
+            cout << "Invalid choice. Please try again." << endl;
+            return;
+        }
+    }
 }
