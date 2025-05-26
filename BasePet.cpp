@@ -1,6 +1,9 @@
 #include <iostream>
 #include "BasePet.h"
 #include <memory>
+
+#include <string>
+
 using namespace std;
 
 
@@ -9,7 +12,8 @@ BasePet::BasePet(const string& name, int age)
 
 void BasePet::update_status() {}//default to do nothing
 
-void BasePet::perform_action(const string& action) {
+void BasePet::perform_action(const string &action) {
+    (void)action;
     //implementation does nothing
 }
 
@@ -19,7 +23,7 @@ bool BasePet::check_alive() const {
 
 void BasePet::print_status() const {
     cout << "Pet: " << name << "\n";
-    cout << "Type " << get_type << "\n";
+    cout << "Type " << get_type() << "\n";
     cout << "Age: " << age << "\n";
     cout << "Alive: " << (is_alive ? "Yes" : "No") << "\n";
     cout << "Hunger: " << stats.get_hunger() << "\n";
@@ -47,9 +51,9 @@ Stats BasePet::get_stats() const {
     return stats;
     
 }
-// void BasePet::set_stats(const Stats& new_stats) {
-//     stats = new_stats;
-
+void BasePet::set_stats(const Stats& new_stats) {
+stats = new_stats;
+}
 
 
 void BasePet::set_stats(const string& stat_name, int value){
@@ -60,4 +64,5 @@ void BasePet::set_stats(const string& stat_name, int value){
     else if (stat_name == "cleanliness") stats.set_cleanliness(value);
 
 };
+
 

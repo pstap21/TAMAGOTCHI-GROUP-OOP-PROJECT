@@ -15,21 +15,20 @@ private:
     int cleanliness;
     
 public:
-    Stats(int hunger = 50, int happiness = 50, int health = 50,
-          int cleanliness = 50, int energy = 50);
+    Stats(int health = 50, int hunger = 50, int energy = 50,
+          int happiness = 50, int cleanliness = 50);
 
-    int get_hunger() const {return hunger;}
-    int get_happiness() const {return happiness;}
-    int get_health() const {return health;}
-    int get_energy() const {return energy;}
-    int get_cleanliness() const {return cleanliness;}
+    int get_hunger() const ;
+    int get_happiness() const ;
+    int get_health() const ;
+    int get_energy() const;
+    int get_cleanliness() const;
 
-    void set_hunger(int h) {hunger = h;}
-    void set_happiness(int h) { happiness = h;}
-    void set_health(int h) {health = h;}
-    void set_energy(int h) {energy = h;}
-    void set_cleanliness(int h) {cleanliness = h;}
-
+    void set_hunger(int h) ;
+    void set_happiness(int h); 
+    void set_health(int h) ;
+    void set_energy(int h) ;
+    void set_cleanliness(int h) ;
     //modifiers
     void change_hunger(int delta);
     void change_happiness(int delta);
