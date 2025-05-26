@@ -14,12 +14,14 @@ using namespace std;
 
 int main() {
     
-    Game game(nullptr);
-    BasePet* pet = game.show_choice_menu();
+
+    static BasePet* pet = Game::show_choice_menu();
+    // static BasePet* pet = Game::show_main_menu();
+    
     if (pet != nullptr){
         std::unique_ptr<BasePet> petPtr(pet);
-        Game newGame(std::move(petPtr));
-
+        Game game { std::move(petPtr) };
+    game.start();
     }
     
 

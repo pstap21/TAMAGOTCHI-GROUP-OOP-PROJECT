@@ -12,6 +12,8 @@
 #include <memory>
 using namespace std;
 
+void Game::start(){}
+
 BasePet* Game::show_choice_menu () {
     cout << "------Welcome to the Adoption Centre-------\n";
     cout << "What pet would you like to own?\n" ;
@@ -56,34 +58,26 @@ BasePet* Game::show_choice_menu () {
 
     
     cout << "Your " << new_pet->get_type() << " named " << new_pet->get_name() << " has been adopted!\n";
-    cout << "Press any key to continue...\n";
-    string key;
-    cin >> key;
+    cout << "Press enter to continue...\n";
+    
+    cin.ignore();
+    cin.get();
     cout << endl;
 
     return new_pet;
 }
 
+
 void Game::update(BasePet* pet) {
     pet->update_status();
 }
+
 
 void Game::end_game() {
     cout << "Your pet has died. Game over!" << endl;
 }
 
-Game::Game(BasePet* pet) {
-
-    cout << "Welcome! The game has started!" << endl;
-
-    unique_ptr<BasePet> evolvedTeenPet = pet->evolve();
-
-    while (evolvedTeenPet == nullptr) {
-        if (pet->check_alive() == true) {
-            end_game();
-            return;
-        }
-
+BasePet* Game::show_main_menu () {
         cout << "Do you want to feed, clean, or play with your " << pet->get_type() << endl;
         cout << "Enter 1 for feed" << endl;
         cout << "Enter 2 for clean" << endl;
@@ -112,15 +106,47 @@ Game::Game(BasePet* pet) {
             cout << "Invalid choice. Please try again." << endl;
             return;
         }
+        }
 
-        update(pet);
+
+Game::Game(std::unique_ptr<BasePet> pet) 
+: current_pet(std::move(pet)), running(true)  {
+
+    if(!current_pet) {
+        cout << "No pet was chosen.Exiting the game. \n";
+        return;
+    }
+      
+
+    cout << "Welcome! The game has started!" << endl;
+
+    while(running) {
+        if (current_pet->check_alive()){
+            end_game();
+            return;
+        }
+    }
+
+
+        update(pet.get());
         unique_ptr<BasePet> evolvedTeenPet = pet->evolve();
     }
 
+
+ unique_ptr<BasePet> evolvedTeenPet = pet->evolve();
+
+    while (evolvedTeenPet == nullptr) {
+        if (pet->check_alive() == false) {
+            end_game();
+            return;
+        }
+    }
+
     unique_ptr<BasePet> evolvedAdultPet = evolvedTeenPet->evolve();
+    
 
     while (evolvedAdultPet == nullptr) {
-        if (evolvedTeenPet->check_alive() == true) {
+        if (evolvedTeenPet->check_alive() == false) {
             end_game();
             return;
         }
@@ -136,12 +162,12 @@ Game::Game(BasePet* pet) {
         switch (choice) {
         case 1:
             cout << "You have chosen to feed your " << evolvedTeenPet->get_type() << " !" << endl;
-            pet->perform_action("feed");
+            current_pet->perform_action("feed");
             break;
     
         case 2:
             cout << "You have chosen to clean your " << evolvedTeenPet->get_type() << " !" << endl;
-            pet->perform_action("clean");
+            current_pet->perform_action("clean");
             break;
     
         case 3:
