@@ -3,7 +3,7 @@
 #include <memory>
 using namespace std;
 
-Cat::Cat(const string& name) : BasePet(name) {
+Cat::Cat(const string& name, int age) : BasePet(name, age) {
     Stats cat_stats;
     cat_stats.set_hunger(30);       // Cats start off less hungry
     cat_stats.set_happiness(70);    // Moderately happy
@@ -53,15 +53,9 @@ bool Cat::check_alive() const {
     return s.get_hunger() < 100 && s.get_health() > 0;
 }
 
-bool Cat::check_evolution() const {
-    Stats s = get_stats();
-    std::cout << "Checking if Cat meets evolution criteria...\n";
-    return get_age() >= 13 && get_stats().get_happiness() >=80;
-}
-
-std::unique_ptr<BasePet> Cat::evolve() {
+unique_ptr<BasePet> Cat::evolve() {
     if (check_evolution()) {
-         std::cout << get_name() << "is evolving into next stage...\n";
+        cout << get_name() << "is evolving into next stage...\n";
     
     }
     return nullptr;

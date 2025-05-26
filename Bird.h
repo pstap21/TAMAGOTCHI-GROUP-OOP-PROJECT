@@ -11,7 +11,7 @@ class Bird : public BasePet {
 public:
     // Constructor: initializes a Bird object with a given name
     // It will also set default stats for a Bird (e.g., happiness, hunger)
-    Bird(const string& name);
+    Bird(const string& name, int age);
 
     // Override BasePet virtual functions to provide Bird-specific behavior:
 
@@ -25,7 +25,7 @@ public:
     bool check_alive() const override;
 
     // check_evolution will return true if the bird meets the criteria to evolve
-    bool check_evolution() const override;
+    virtual bool check_evolution() const = 0;
 
     // evolve will return a pointer to a new evolved BasePet object (or nullptr if no evolution)
     std::unique_ptr<BasePet> evolve() override;

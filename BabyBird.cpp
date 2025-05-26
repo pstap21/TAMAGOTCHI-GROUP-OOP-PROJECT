@@ -1,5 +1,5 @@
 #include "TeenBird.h"
-#include "AdultBird.h"
+#include "BabyBird.h"
 #include "BasePet.h"
 #include "Stats.h"
 #include <iostream>
@@ -7,39 +7,40 @@
 
 using namespace std;
 
-TeenBird::TeenBird (const string&name) : Bird(name, 5) {
+BabyBird::BabyBird (const string&name) : Bird(name, 0) {
     //evolution stats
-    Stats teen_stats;
-    teen_stats.set_hunger(40);
-    teen_stats.set_happiness(90);
-    teen_stats.set_health(100);
-    teen_stats.set_energy(90);
-    teen_stats.set_cleanliness(60);
-    set_stats(teen_stats);
+    Stats baby_stats;
+    baby_stats.set_hunger(60);
+    baby_stats.set_happiness(100);
+    baby_stats.set_health(100);
+    baby_stats.set_energy(100);
+    baby_stats.set_cleanliness(50);
+    set_stats(baby_stats);
 
 
 }
-void TeenBird::update_status() {
+void BabyBird::update_status() {
     Stats s = get_stats();
-    s.change_hunger(4);
-    s.change_happiness(-3);
-    s.change_energy(-4);
-    s.change_cleanliness(-4);
+    s.change_hunger(5);
+    s.change_happiness(-4);
+    s.change_energy(-5);
+    s.change_cleanliness(-5);
     s.change_health(-2);
     set_stats(s);
+    age++;
 }
 
-void TeenBird::perform_action(const string&action) {
+void BabyBird::perform_action(const string&action) {
     Stats s = get_stats();
 
     if(action == "feed") {
-        s.change_hunger(-8);
+        s.change_hunger(-10);
         s.change_happiness(4);
-        s.change_energy(3);
+        s.change_energy(5);
         cout << "You fed" << get_name() << " " << ". Its growing big and strong!\n";
     } else if (action == "play") {
         s.change_happiness(8);
-        s.change_energy(-8);
+        s.change_energy(-10);
         cout << "You played with" << get_name() << " " << ". It ran around with lots of energy!\n";
     } else if(action == "clean") {
         s.change_cleanliness(10);
@@ -49,25 +50,26 @@ void TeenBird::perform_action(const string&action) {
     }
     set_stats(s);
 
-    }
-    bool TeenBird::check_alive() const {
+}
+
+bool BabyBird::check_alive() const {
     Stats s = get_stats();
     return s.get_hunger() < 100 && s.get_health() > 0;
 
-    }
-
-    bool TeenBird::check_evolution() const {
-    return get_age() >= 15 && get_stats().get_happiness() >= 90;
 }
 
-unique_ptr<BasePet> TeenBird::evolve() {
+bool BabyBird::check_evolution() const {
+    return get_age() >= 5 && get_stats().get_happiness() >= 90;
+}
+
+unique_ptr<BasePet> BabyBird::evolve() {
     if(check_evolution()) {
         cout << get_name() << "is evolving into an adult bird!!\n";
-        return make_unique<AdultBird>(get_name());
+        return make_unique<TeenBird>(get_name());
     }
     return nullptr;
 }
 
-string TeenBird::get_type() const {
-    return "Teen Bird";
+string BabyBird::get_type() const {
+    return "Baby Bird";
 }

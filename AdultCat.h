@@ -1,12 +1,12 @@
 #ifndef ADULTCAT_H
 #define ADULTCAT_H
 
-#include "BasePet.h"
-#include<iostream>
+#include "Cat.h"
+#include <iostream>
 #include <string>
 #include <memory>
 
-class AdultCat : public BasePet {
+class AdultCat : public Cat {
     public:
 
     AdultCat(const std::string& name);

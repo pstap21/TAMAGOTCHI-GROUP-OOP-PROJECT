@@ -1,8 +1,11 @@
 #include "AdultCat.h"
+#include "BasePet.h"
+#include "Stats.h"
+#include "Cat.h"
 #include <iostream>
 #include <memory>
 
-AdultCat::AdultCat(const std::string& name) : BasePet(name) {
+AdultCat::AdultCat(const std::string& name) : Cat(name, 15) {
     Stats stats;
     stats.set_hunger(30);
     stats.set_happiness(85);
@@ -19,6 +22,7 @@ void AdultCat::update_status() {
     s.change_energy(-3);
     s.change_cleanliness(-4);
     set_stats(s);
+    age++;
 }
 
 void AdultCat::perform_action(const std::string& action) {
@@ -56,5 +60,5 @@ std::unique_ptr<BasePet> AdultCat::evolve() {
 }
 
 std::string AdultCat::get_type() const {
-    return "AdultCat";
+    return "Adult Cat";
 }

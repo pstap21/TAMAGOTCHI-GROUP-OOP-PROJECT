@@ -4,7 +4,7 @@
 using namespace std;
 
 // Constructor implementation
-Bird::Bird(const string& name) : BasePet(name) { // Call BasePet constructor, age 0
+Bird::Bird(const string& name, int age) : BasePet(name, age) { // Call BasePet constructor
   Stats bird_stats;
   bird_stats.set_hunger(20);
   bird_stats.set_happiness(60);
@@ -17,14 +17,14 @@ Bird::Bird(const string& name) : BasePet(name) { // Call BasePet constructor, ag
 // This method is called to update the dog's status as the game progresses
 void Bird::update_status() {
     // Here you could decrease hunger over time, adjust happiness, etc.
-    cout << "Updating Bird status: adjusting hunger and happiness levels over time.\n";
+    cout << "Updating Bird status: adjusting stats over time.\n";
     Stats s = get_stats();
     s.change_hunger(3);
     s.change_happiness(-2);
     s.change_energy(5);
     s.change_cleanliness(10);
     set_stats(s);
-
+    age++;
 }
 
 // This method reacts to player actions (e.g., feed, play)
@@ -60,14 +60,6 @@ bool Bird::check_alive() const {
     Stats s = get_stats();
     cout << "Checking if Bird is alive based on health and hunger...\n";
     return s.get_hunger() < 100 && s.get_health() > 0; 
-}
-
-// Check if the bird can evolve (e.g., reached certain age or happiness)
-bool Bird::check_evolution() const {
-    Stats s = get_stats();
-    cout << "Checking if Bird meets evolution criteria...\n";
-    return get_age() >= 13 && get_stats().get_happiness() >= 80;
-
 }
 
 // Evolve returns a pointer to a new evolved pet or nullptr if no evolution

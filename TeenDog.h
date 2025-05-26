@@ -1,11 +1,11 @@
 #ifndef TEENDOG_H
 #define TEENDOG_H
 
-#include "BasePet.h"
-#include <memory>
+#include "Dog.h"
 
-class TeenDog : public BasePet {
-    public:
+class TeenDog : public Dog {
+    
+public:
 
     TeenDog(const std::string& name);
     void update_status() override;

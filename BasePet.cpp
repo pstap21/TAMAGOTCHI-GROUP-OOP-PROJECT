@@ -4,8 +4,8 @@
 using namespace std;
 
 
-BasePet::BasePet(const string& name)
- : name(name), age(0), is_alive(true), stats() {}
+BasePet::BasePet(const string& name, int age)
+ : name(name), age(age), is_alive(true), stats() {}
 
 void BasePet::update_status() {}//default to do nothing
 

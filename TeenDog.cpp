@@ -7,7 +7,7 @@
 
 using namespace std;
 
-TeenDog::TeenDog (const string&name) : BasePet(name) {
+TeenDog::TeenDog (const string&name) : Dog(name, 5) {
     //evolution stats
     Stats teen_stats;
     teen_stats.set_hunger(40);
@@ -27,6 +27,7 @@ void TeenDog::update_status() {
     s.change_cleanliness(-4);
     s.change_health(-2);
     set_stats(s);
+    age++;
 }
 
 void TeenDog::perform_action(const string&action) {
@@ -57,14 +58,13 @@ void TeenDog::perform_action(const string&action) {
     }
 
     bool TeenDog::check_evolution() const {
-    
-    return get_age() >=30 && get_stats().get_happiness() >= 90;
+    return get_age() >= 15 && get_stats().get_happiness() >= 90;
 }
 
 unique_ptr<BasePet> TeenDog::evolve() {
     if(check_evolution()) {
-        std::cout << get_name() << " is evolving into an adult dog!!\n";
-        return std::make_unique<AdultDog>(get_name());
+        cout << get_name() << " is evolving into an adult dog!!\n";
+        return make_unique<AdultDog>(get_name());
     }
     return nullptr;
 }

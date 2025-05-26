@@ -1,20 +1,23 @@
-#ifndef HAT_H
+#ifndef CAT_H
 #define CAT_H
 #include <memory>
 #include "BasePet.h"
 #include <string>
 #include <iostream>
 
+using namespace std;
+
 class Cat : public BasePet {
-    public:
-    Cat (const std::string& name);
+
+public:
+    Cat(const std::string& name, int age);
 
     void update_status() override;
     void perform_action(const std::string& action) override;
-    bool check_evolution() const override;
+    virtual bool check_evolution() const = 0;
     bool check_alive() const override;
-    std::unique_ptr<BasePet> evolve() override;
-    std::string get_type() const override;
+    unique_ptr<BasePet> evolve() override;
+    string get_type() const override;
 
 
 };

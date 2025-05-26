@@ -7,14 +7,14 @@
 using namespace std;
 
 class BasePet {
-    private:
+protected:
     string name;
     int age;
     bool is_alive;
     Stats stats;
 
-    public:
-    BasePet(const string& name);//constructor
+public:
+    BasePet(const string& name, int age);//constructor
     virtual ~BasePet() = default;//destructor
 
 

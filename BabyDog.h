@@ -1,12 +1,14 @@
-#ifndef TEENCAT_H
-#define TEENCAT_H
+#ifndef BABYDOG_H
+#define BABYDOG_H
 
-#include "Cat.h"
+#include "Dog.h"
+#include "BasePet.h"
 
-class TeenCat : public Cat {
-    public:
+class BabyDog : public Dog {
+    
+public:
 
-    TeenCat(const std::string& name);
+    BabyDog(const std::string& name);
     void update_status() override;
     void perform_action(const std::string& action) override;
     std::unique_ptr<BasePet> evolve() override;

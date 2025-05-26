@@ -1,13 +1,13 @@
 #ifndef ADULTBIRD_H
 #define ADULTBIRD_H
 
-#include "BasePet.h"
-#include<iostream>
+#include "Bird.h"
+#include <iostream>
 #include <string>
 #include <memory>
 
-class AdultBird : public BasePet {
-    public:
+class AdultBird : public Bird {
+public:
 
     AdultBird(const std::string& name);
 

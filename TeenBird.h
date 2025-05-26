@@ -1,11 +1,9 @@
-
 #ifndef TEENBIRD_H
 #define TEENBIRD_H
 
-#include "BasePet.h"
+#include "Bird.h"
 
-
-class TeenBird : public BasePet {
+class TeenBird : public Bird {
     public:
 
     TeenBird(const std::string& name);

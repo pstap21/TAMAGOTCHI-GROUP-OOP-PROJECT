@@ -1,8 +1,11 @@
 #include "AdultDog.h"
+#include "BasePet.h"
+#include "Stats.h"
+#include "Dog.h"
 #include <iostream>
 #include <memory>
 
-AdultDog::AdultDog(const std::string& name) : BasePet(name) {
+AdultDog::AdultDog(const std::string& name) : Dog(name, 15) {
     Stats stats;
     stats.set_hunger(30);
     stats.set_happiness(85);
@@ -19,6 +22,7 @@ void AdultDog::update_status() {
     s.change_energy(-3);
     s.change_cleanliness(-4);
     set_stats(s);
+    age++;
 }
 
 void AdultDog::perform_action(const std::string& action) {
@@ -56,5 +60,5 @@ std::unique_ptr<BasePet> AdultDog::evolve() {
 }
 
 std::string AdultDog::get_type() const {
-    return "AdultDog";
+    return "Adult Dog";
 }
