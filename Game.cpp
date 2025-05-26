@@ -68,7 +68,17 @@ void Game::end_game() {
 }
 
 Game::Game(BasePet* pet) {
-    while (pet->check_alive() == true) {
+
+    cout << "Welcome! The game has started!" << endl;
+
+    unique_ptr<BasePet> evolvedTeenPet = pet->evolve();
+
+    while (evolvedTeenPet == nullptr) {
+        if (pet->check_alive() == true) {
+            end_game();
+            return;
+        }
+
         cout << "Do you want to feed, clean, or play with your " << pet->get_type() << endl;
         cout << "Enter 1 for feed" << endl;
         cout << "Enter 2 for clean" << endl;
@@ -97,5 +107,86 @@ Game::Game(BasePet* pet) {
             cout << "Invalid choice. Please try again." << endl;
             return;
         }
+
+        update(pet);
+        unique_ptr<BasePet> evolvedTeenPet = pet->evolve();
     }
+
+    unique_ptr<BasePet> evolvedAdultPet = evolvedTeenPet->evolve();
+
+    while (evolvedAdultPet == nullptr) {
+        if (evolvedTeenPet->check_alive() == true) {
+            end_game();
+            return;
+        }
+
+        cout << "Do you want to feed, clean, or play with your " << evolvedTeenPet->get_type() << endl;
+        cout << "Enter 1 for feed" << endl;
+        cout << "Enter 2 for clean" << endl;
+        cout << "Enter 3 for play" << endl;
+
+        int choice;
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            cout << "You have chosen to feed your " << evolvedTeenPet->get_type() << " !" << endl;
+            pet->perform_action("feed");
+            break;
+    
+        case 2:
+            cout << "You have chosen to clean your " << evolvedTeenPet->get_type() << " !" << endl;
+            pet->perform_action("clean");
+            break;
+    
+        case 3:
+            cout << "You have chosen to play with your " << evolvedTeenPet->get_type() << " !" << endl;
+            pet->perform_action("play");
+            break;
+    
+        default:
+            cout << "Invalid choice. Please try again." << endl;
+            return;
+        }
+
+        evolvedTeenPet->update_status();
+        unique_ptr<BasePet> evolvedAdultPet = evolvedTeenPet->evolve();
+    }
+
+
+     while (evolvedAdultPet->check_alive() == true) {
+
+        cout << "Do you want to feed, clean, or play with your " << evolvedAdultPet->get_type() << endl;
+        cout << "Enter 1 for feed" << endl;
+        cout << "Enter 2 for clean" << endl;
+        cout << "Enter 3 for play" << endl;
+
+        int choice;
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            cout << "You have chosen to feed your " << evolvedAdultPet->get_type() << " !" << endl;
+            pet->perform_action("feed");
+            break;
+    
+        case 2:
+            cout << "You have chosen to clean your " << evolvedAdultPet->get_type() << " !" << endl;
+            pet->perform_action("clean");
+            break;
+    
+        case 3:
+            cout << "You have chosen to play with your " << evolvedAdultPet->get_type() << " !" << endl;
+            pet->perform_action("play");
+            break;
+    
+        default:
+            cout << "Invalid choice. Please try again." << endl;
+            return;
+        }
+
+        evolvedAdultPet->update_status();
+    }
+
+    end_game();
 }
