@@ -7,18 +7,6 @@
 #include <memory>
 using namespace std;
 
-void Game::show_main_menu() {
-    cout << " -----------------------\n" ;
-    cout << "Welcome to the Adoption Centre\n" ;
-    cout << " -----------------------\n" ;
-    cout << "1) Start Game\n";
-    cout << "2) Exit\n" ;
-    cout << "Please choose an option:  \n";
-
-
-}
-
-//if 1) is chosen, a new game is started 
 void Game::show_choice_menu () {
     cout << "------Welcome to the Adoption Centre-------\n";
     cout << "What pet would you like to own?\n" ;
@@ -36,7 +24,6 @@ void Game::show_choice_menu () {
     switch (choice) {
         case 1:
             cout << "\nCongrats! You have chosen a Dog!\n";
-            cout << "Dogs start with 100 happiness and 50 hunger.\n";
             cout << "What would you like to name your dog?\n";
             cin >> name;
             new_pet = new BabyDog(name);  // Create Dog object dynamically
@@ -44,7 +31,6 @@ void Game::show_choice_menu () {
     
         case 2:
             cout << "\nCongrats! You have chosen a Cat!\n";
-            cout << "Cats start with 80 happiness and 40 hunger.\n";
             cout << "What would you like to name your cat?\n";
             cin >> name;
             new_pet = new BabyCat(name);  // Create Cat object dynamically
@@ -52,7 +38,6 @@ void Game::show_choice_menu () {
     
         case 3:
             cout << "\nCongrats! You have chosen a Bird!\n";
-            cout << "Birds start with 90 happiness and 30 hunger.\n";
             cout << "What would you like to name your bird?\n";
             cin >> name;
             new_pet = new BabyBird(name);  // Create Bird object dynamically
