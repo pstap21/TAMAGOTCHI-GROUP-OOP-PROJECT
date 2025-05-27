@@ -30,8 +30,17 @@ while (running && current_pet->check_alive()){
     show_main_menu();
     update(current_pet.get());
 
-    unique_ptr<BasePet> evolvedTeenPet = current_pet->evolve();
-    update(current_pet.get());
+    auto evolvedTeenPet = current_pet->evolve();
+    if (evolvedTeenPet) {
+        current_pet = std::move(evolvedTeenPet);
+    }
+    // unique_ptr<BasePet> evolvedTeenPet = current_pet->evolve();
+    // 
+
+    while( auto evolved = current_pet->evolve()){
+        current_pet = std::move(evolved);
+        update(current_pet.get());
+    }
     // auto evolved_pet = current_pet->evolve();
     // if (evolved_pet) {
     //     current_pet = std::move(evolved_pet);
@@ -71,18 +80,21 @@ while (running && current_pet->check_alive()){
         case 1:
             cout << "You have chosen to feed your " << evolvedTeenPet->get_type() << " !" << endl;
             current_pet->perform_action("feed");
+            evolvedTeenPet->update_status();
             evolvedTeenPet->print_status();
             break;
     
         case 2:
             cout << "You have chosen to clean your " << evolvedTeenPet->get_type() << " !" << endl;
             current_pet->perform_action("clean");
+            evolvedTeenPet->update_status();
             evolvedTeenPet->print_status();
             break;
     
         case 3:
             cout << "You have chosen to play with your " << evolvedTeenPet->get_type() << " !" << endl;
             current_pet->perform_action("play");
+            evolvedTeenPet->update_status();
             evolvedTeenPet->print_status();
             break;
     
@@ -91,7 +103,8 @@ while (running && current_pet->check_alive()){
             continue;
         }
 
-        evolvedTeenPet->update_status();
+       // evolvedTeenPet->update_status();
+       // evolvedTeenPet->print_status();
         evolvedAdultPet = evolvedTeenPet->evolve();
 
         
@@ -113,18 +126,21 @@ while (running && current_pet->check_alive()){
         case 1:
             cout << "You have chosen to feed your " << evolvedAdultPet->get_type() << " !" << endl;
             current_pet->perform_action("feed");
+            evolvedAdultPet->update_status();
             evolvedAdultPet->print_status();
             break;
     
         case 2:
             cout << "You have chosen to clean your " << evolvedAdultPet->get_type() << " !" << endl;
             current_pet->perform_action("clean");
+            evolvedAdultPet->update_status();
             evolvedAdultPet->print_status();
             break;
     
         case 3:
             cout << "You have chosen to play with your " << evolvedAdultPet->get_type() << " !" << endl;
             current_pet->perform_action("play");
+            evolvedAdultPet->update_status();
             evolvedAdultPet->print_status();
             break;
     
@@ -133,7 +149,8 @@ while (running && current_pet->check_alive()){
             continue;
         }
 
-        evolvedAdultPet->update_status();
+       // evolvedAdultPet->update_status();
+       // evolvedAdultPet->print_status();
     }
 }
 end_game();
@@ -214,16 +231,22 @@ BasePet* Game::show_main_menu () {
         case 1:
             cout << "You have chosen to feed your " << current_pet->get_type() << " !" << endl;
             current_pet->perform_action("feed");
+            current_pet->update_status();
+            current_pet->print_status();
             break;
     
         case 2:
             cout << "You have chosen to clean your " << current_pet->get_type() << " !" << endl;
             current_pet->perform_action("clean");
+            current_pet->update_status();
+            current_pet->print_status();
             break;
     
         case 3:
             cout << "You have chosen to play with your " << current_pet->get_type() << " !" << endl;
             current_pet->perform_action("play");
+            current_pet->update_status();
+            current_pet->print_status();
             break;
     
         default:

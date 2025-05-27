@@ -1,6 +1,7 @@
 #include "Stats.h"
 #include <memory>
 #include "BasePet.h"
+#include <algorithm>
 
 // Constructor
 // Constructor
@@ -16,11 +17,27 @@ int Stats::get_cleanliness() const { return cleanliness; }
 int Stats::get_energy() const { return energy; }
 
 //setters
-void Stats::set_hunger(int h) { hunger = h; }
-void Stats::set_happiness(int h) { happiness = h; }
-void Stats::set_health(int h) { health = h; }
-void Stats::set_energy(int h) { energy = h; }
-void Stats::set_cleanliness(int h) { cleanliness = h; }
+void Stats::set_hunger(int h) {
+    hunger = std::max(0, std::min(100, h));
+}
+void Stats::set_happiness(int h) {
+    happiness = std::max(0, std::min(100, h));
+}
+void Stats::set_health(int h) {
+    health = std::max(0, std::min(100, h));
+}
+void Stats::set_energy(int h) {
+    energy = std::max(0, std::min(100, h));
+}
+void Stats::set_cleanliness(int h) {
+    cleanliness = std::max(0, std::min(100, h));
+}
+
+// void Stats::set_hunger(int h) { hunger = h; }
+// void Stats::set_happiness(int h) { happiness = h; }
+// void Stats::set_health(int h) { health = h; }
+// void Stats::set_energy(int h) { energy = h; }
+// void Stats::set_cleanliness(int h) { cleanliness = h; }
 
 // Modifiers
 void Stats::change_hunger(int delta) { set_hunger(hunger + delta); }

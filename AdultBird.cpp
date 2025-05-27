@@ -17,10 +17,10 @@ AdultBird::AdultBird(const string& name) : Bird(name, 15) {
 
 void AdultBird::update_status() {
     Stats s = get_stats();
-    s.change_hunger(4);
-    s.change_happiness(-1);
-    s.change_energy(-3);
-    s.change_cleanliness(-4);
+    s.change_hunger(0);
+    s.change_happiness(0);
+    s.change_energy(0);
+    s.change_cleanliness(0);
     set_stats(s);
     age++;
 }
@@ -29,7 +29,7 @@ void AdultBird::perform_action(const string& action) {
     Stats s = get_stats();
 
     if (action == "feed") {
-        s.change_hunger(-15);
+        s.change_hunger(15);
         s.change_happiness(4);
     } else if (action == "play") {
         s.change_happiness(8);

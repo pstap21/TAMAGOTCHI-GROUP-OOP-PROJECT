@@ -23,7 +23,7 @@ public:
 
     virtual bool check_evolution() const = 0;
     virtual bool check_alive() const;
-    virtual void perform_action(const string& action);
+    virtual void perform_action(const string& action) =0;
     virtual unique_ptr<BasePet> evolve() = 0;
     virtual string get_type() const = 0;
 
