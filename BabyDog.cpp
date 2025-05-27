@@ -40,7 +40,7 @@ void BabyDog::perform_action(const string&action) {
         cout << "You fed" << get_name() << " " << ". Its growing big and strong!\n";
     } else if (action == "play") {
         s.change_happiness(8);
-        s.change_energy(-10);
+        s.change_energy(10);
         s.change_cleanliness(-10);
         cout << "You played with" << get_name() << " " << ". It ran around with lots of energy!\n";
     } else if(action == "clean") {
@@ -61,12 +61,12 @@ bool BabyDog::check_alive() const {
 }
 
 bool BabyDog::check_evolution() const {
-    return get_age() >= 5 && get_stats().get_happiness() >= 90 && get_stats().get_cleanliness() >= 90;
+    return  get_stats().get_happiness() >= 90 && get_stats().get_cleanliness() >= 90;
 }
 
 unique_ptr<BasePet> BabyDog::evolve() {
     if(check_evolution()) {
-        cout << get_name() << "is evolving into an adult Dog!!\n";
+        cout << get_name() << "is evolving into an teen Dog!!\n";
         return std::make_unique<TeenDog>(get_name());
     }
     return nullptr;

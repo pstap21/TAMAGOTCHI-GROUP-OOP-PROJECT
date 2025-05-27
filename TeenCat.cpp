@@ -38,6 +38,7 @@ void TeenCat::perform_action(const string&action) {
         s.change_hunger(8);
         s.change_happiness(4);
         s.change_energy(3);
+        s.change_health(10);
         cout << "You fed " << get_name() << " " << ". Its growing big and strong!\n";
     } else if (action == "play") {
         s.change_happiness(4);
@@ -45,6 +46,8 @@ void TeenCat::perform_action(const string&action) {
         cout << "You played with " <<get_name() << " " << ". It ran around with lots of energy!\n";
     } else if(action == "clean") {
         s.change_cleanliness(10);
+        s.change_energy(8);
+        s.change_hunger(10);
         cout << "You washed " << get_name() << " " << ". They are now sparkling clean!!\n";
     } else  {
         cout << "Action not supported, try again.\n";

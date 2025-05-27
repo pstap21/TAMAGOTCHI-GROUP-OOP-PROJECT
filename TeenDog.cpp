@@ -41,6 +41,7 @@ void TeenDog::perform_action(const string&action) {
     } else if (action == "play") {
         s.change_happiness(8);
         s.change_energy(-8);
+        s.change_health(10);
         cout << "You played with" <<get_name() << " " << ". It ran around with lots of energy!\n";
     } else if(action == "clean") {
         s.change_cleanliness(10);

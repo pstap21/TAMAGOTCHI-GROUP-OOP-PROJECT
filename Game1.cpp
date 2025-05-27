@@ -1,5 +1,3 @@
-
-
 #include "Game.h"
 #include "BabyDog.h"   
 #include "BabyCat.h"

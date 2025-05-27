@@ -60,7 +60,7 @@ bool BabyBird::check_alive() const {
 }
 
 bool BabyBird::check_evolution() const {
-    return get_age() >= 5 && get_stats().get_happiness() >= 90 && get_stats().get_cleanliness() >= 90;
+    return  get_stats().get_happiness() >= 90 && get_stats().get_cleanliness() >= 90;
 }
 
 unique_ptr<BasePet> BabyBird::evolve() {
