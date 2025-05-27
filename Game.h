@@ -14,16 +14,15 @@ private:
   bool running;
   
 
-  void process_input(const string& input);
-  void update(BasePet* pet);
-  void end_game();
 
 public:
 
-explicit Game(std::unique_ptr<BasePet> pet);
-
- static BasePet* show_choice_menu();
- static BasePet* show_main_menu();
+explicit Game(std::unique_ptr<BasePet> current_pet);
+  void process_input(const string& input);
+  void update(BasePet* pet);
+  void end_game();
+  std::unique_ptr<BasePet> show_choice_menu();
+  BasePet* show_main_menu();
 
 void start();
   ~Game();
