@@ -21,7 +21,7 @@ TeenBird::TeenBird (const string&name) : Bird(name, 5) {
 }
 void TeenBird::update_status() {
     Stats s = get_stats();
-    s.change_hunger(-2);
+    s.change_hunger(0);
     s.change_happiness(-2);
     s.change_energy(-1);
     s.change_cleanliness(-1);
