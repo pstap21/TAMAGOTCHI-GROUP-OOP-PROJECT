@@ -4,7 +4,7 @@ CXXFLAGS = -Wall -std=c++14
 
 # Targets and files
 TARGET = myprogram
-SRCS = main.cpp AdultBird.cpp AdultCat.cpp AdultDog.cpp TeenBird.cpp TeenCat.cpp TeenDog.cpp BabyCat.cpp BabyBird.cpp BabyDog.cpp BasePet.cpp Cat.cpp Dog.cpp Bird.cpp Game.cpp Stats.cpp
+SRCS = main.cpp AdultBird.cpp AdultCat.cpp AdultDog.cpp TeenBird.cpp TeenCat.cpp TeenDog.cpp BabyCat.cpp BabyBird.cpp BabyDog.cpp BasePet.cpp Cat.cpp Dog.cpp Bird.cpp Game1.cpp Stats.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default target
