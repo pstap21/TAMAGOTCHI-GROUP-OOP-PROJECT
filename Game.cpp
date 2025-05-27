@@ -71,16 +71,19 @@ while (running && current_pet->check_alive()){
         case 1:
             cout << "You have chosen to feed your " << evolvedTeenPet->get_type() << " !" << endl;
             current_pet->perform_action("feed");
+            evolvedTeenPet->print_status();
             break;
     
         case 2:
             cout << "You have chosen to clean your " << evolvedTeenPet->get_type() << " !" << endl;
             current_pet->perform_action("clean");
+            evolvedTeenPet->print_status();
             break;
     
         case 3:
             cout << "You have chosen to play with your " << evolvedTeenPet->get_type() << " !" << endl;
             current_pet->perform_action("play");
+            evolvedTeenPet->print_status();
             break;
     
         default:
@@ -110,16 +113,19 @@ while (running && current_pet->check_alive()){
         case 1:
             cout << "You have chosen to feed your " << evolvedAdultPet->get_type() << " !" << endl;
             current_pet->perform_action("feed");
+            evolvedAdultPet->print_status();
             break;
     
         case 2:
             cout << "You have chosen to clean your " << evolvedAdultPet->get_type() << " !" << endl;
             current_pet->perform_action("clean");
+            evolvedAdultPet->print_status();
             break;
     
         case 3:
             cout << "You have chosen to play with your " << evolvedAdultPet->get_type() << " !" << endl;
             current_pet->perform_action("play");
+            evolvedAdultPet->print_status();
             break;
     
         default:
