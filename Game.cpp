@@ -10,143 +10,51 @@
 #include <iostream>
 
 #include <memory>
+
 using namespace std;
 
-void Game::start(){}
-
-BasePet* Game::show_choice_menu () {
-    cout << "------Welcome to the Adoption Centre-------\n";
-    cout << "What pet would you like to own?\n" ;
-    cout << "Enter 1 for Dog\n";
-    cout << "Enter 2 for Cat\n";
-    cout << "Enter 3 for Bird\n";
-
-    int choice;
-    cin >> choice;
-
-    string name;
-    BasePet* new_pet = nullptr;//initilise ptr to nullptr
-
-    //create a switch statement for cleaner code
-    switch (choice) {
-        case 1:
-            cout << "\nCongrats! You have chosen a Dog!\n";
-            cout << "What would you like to name your dog?\n";
-            cin >> name;
-            new_pet = new BabyDog(name);  // Create Dog object dynamically
-            break;
-    
-        case 2:
-            cout << "\nCongrats! You have chosen a Cat!\n";
-            cout << "What would you like to name your cat?\n";
-            cin >> name;
-            new_pet = new BabyCat(name);  // Create Cat object dynamically
-            break;
-    
-        case 3:
-            cout << "\nCongrats! You have chosen a Bird!\n";
-            cout << "What would you like to name your bird?\n";
-            cin >> name;
-            new_pet = new BabyBird(name);  // Create Bird object dynamically
-            break;
-    
-        default:
-            cout << "Invalid choice. Please try again.\n";
-            return 0;  // exit function early
-    }
-
-
-    
-    cout << "Your " << new_pet->get_type() << " named " << new_pet->get_name() << " has been adopted!\n";
-    cout << "Press enter to continue...\n";
-    
-    cin.ignore();
-    cin.get();
-    cout << endl;
-
-    return new_pet;
-}
-
-
-void Game::update(BasePet* pet) {
-    pet->update_status();
-}
-
-
-void Game::end_game() {
-    cout << "Your pet has died. Game over!" << endl;
-}
-
-BasePet* Game::show_main_menu () {
-        cout << "Do you want to feed, clean, or play with your " << pet->get_type() << endl;
-        cout << "Enter 1 for feed" << endl;
-        cout << "Enter 2 for clean" << endl;
-        cout << "Enter 3 for play" << endl;
-
-        int choice;
-        cin >> choice;
-
-        switch (choice) {
-        case 1:
-            cout << "You have chosen to feed your " << pet->get_type() << " !" << endl;
-            pet->perform_action("feed");
-            break;
-    
-        case 2:
-            cout << "You have chosen to clean your " << pet->get_type() << " !" << endl;
-            pet->perform_action("clean");
-            break;
-    
-        case 3:
-            cout << "You have chosen to play with your " << pet->get_type() << " !" << endl;
-            pet->perform_action("play");
-            break;
-    
-        default:
-            cout << "Invalid choice. Please try again." << endl;
-            return;
-        }
-        }
-
-
 Game::Game(std::unique_ptr<BasePet> pet) 
-: current_pet(std::move(pet)), running(true)  {
+: current_pet(std::move(pet)), running(true)  {}
 
+Game::~Game()  {}
+
+void Game::start() {
     if(!current_pet) {
-        cout << "No pet was chosen.Exiting the game. \n";
+        std::cout << "No pet has been chosen, exiting the game.\n";
         return;
     }
-      
 
-    cout << "Welcome! The game has started!" << endl;
+    std::cout << "Welcome! The game has started!" << endl;
 
-    while(running) {
-        if (current_pet->check_alive()){
-            end_game();
-            return;
-        }
-    }
+while (running && current_pet->check_alive()){
+    show_main_menu();
+    update(current_pet.get());
 
+    unique_ptr<BasePet> evolvedTeenPet = current_pet->evolve();
+    update(current_pet.get());
+    // auto evolved_pet = current_pet->evolve();
+    // if (evolved_pet) {
+    //     current_pet = std::move(evolved_pet);
 
-        update(pet.get());
-        unique_ptr<BasePet> evolvedTeenPet = pet->evolve();
-    }
-
-
- unique_ptr<BasePet> evolvedTeenPet = pet->evolve();
-
+    // }
+    //end_game();
+    
     while (evolvedTeenPet == nullptr) {
-        if (pet->check_alive() == false) {
+        if (!current_pet->check_alive()) {
             end_game();
             return;
         }
+
+        show_main_menu();
+        update(current_pet.get());
+        evolvedTeenPet = current_pet->evolve();
     }
 
     unique_ptr<BasePet> evolvedAdultPet = evolvedTeenPet->evolve();
     
 
     while (evolvedAdultPet == nullptr) {
-        if (evolvedTeenPet->check_alive() == false) {
+        if (!evolvedTeenPet->check_alive()) {
             end_game();
             return;
         }
@@ -172,20 +80,23 @@ Game::Game(std::unique_ptr<BasePet> pet)
     
         case 3:
             cout << "You have chosen to play with your " << evolvedTeenPet->get_type() << " !" << endl;
-            pet->perform_action("play");
+            current_pet->perform_action("play");
             break;
     
         default:
             cout << "Invalid choice. Please try again." << endl;
-            return;
+            continue;
         }
 
         evolvedTeenPet->update_status();
+        evolvedAdultPet = evolvedTeenPet->evolve();
+
+        
         unique_ptr<BasePet> evolvedAdultPet = evolvedTeenPet->evolve();
     }
 
 
-     while (evolvedAdultPet->check_alive() == true) {
+     while (evolvedAdultPet->check_alive()) {
 
         cout << "Do you want to feed, clean, or play with your " << evolvedAdultPet->get_type() << endl;
         cout << "Enter 1 for feed" << endl;
@@ -198,35 +109,128 @@ Game::Game(std::unique_ptr<BasePet> pet)
         switch (choice) {
         case 1:
             cout << "You have chosen to feed your " << evolvedAdultPet->get_type() << " !" << endl;
-            pet->perform_action("feed");
+            current_pet->perform_action("feed");
             break;
     
         case 2:
             cout << "You have chosen to clean your " << evolvedAdultPet->get_type() << " !" << endl;
-            pet->perform_action("clean");
+            current_pet->perform_action("clean");
             break;
     
         case 3:
             cout << "You have chosen to play with your " << evolvedAdultPet->get_type() << " !" << endl;
-            pet->perform_action("play");
+            current_pet->perform_action("play");
             break;
     
         default:
             cout << "Invalid choice. Please try again." << endl;
-            return;
+            continue;
         }
 
         evolvedAdultPet->update_status();
     }
+}
+end_game();
 
-    end_game();
+}
 
-   
+BasePet* new_pet = nullptr;//initilise ptr to nullptr
 
+std::unique_ptr<BasePet> Game::show_choice_menu() {
+    cout << "------Welcome to the Adoption Centre-------\n";
+    cout << "What pet would you like to own?\n" ;
+    cout << "Enter 1 for Dog\n";
+    cout << "Enter 2 for Cat\n";
+    cout << "Enter 3 for Bird\n";
 
+    int choice;
+    std::cin >> choice;
+
+    std::string name;
+
+    //create a switch statement for cleaner code
+    switch (choice) {
+        case 1:
+            std::cout << "\nCongrats! You have chosen a Dog!\n";
+            std::cout << "What would you like to name your dog?\n";
+            std::cin >> name;
+            return std::make_unique<BabyDog>(name); // Create Dog object dynamically
+            //break;
+    
+        case 2:
+            std::cout << "\nCongrats! You have chosen a Cat!\n";
+            std::cout << "What would you like to name your cat?\n";
+            std::cin >> name;
+            return std::make_unique<BabyCat>(name);  // Create Cat object dynamically
+            //break;
+    
+        case 3:
+            std::cout << "\nCongrats! You have chosen a Bird!\n";
+            std::cout << "What would you like to name your bird?\n";
+            std::cin >> name;
+            return std::make_unique<BabyBird>(name); // Create Bird object dynamically
+            //break;
+    
+        default:
+            std::cout << "Invalid choice. Please try again.\n";
+            return nullptr;  // exit function early
+    
+    cout << "Your " << new_pet->get_type() << " named " << new_pet->get_name() << " has been adopted!\n";
+    cout << "Press enter to continue...\n";
+    std::cin.ignore();
+    cin.get();
+    cout << endl;
+    
     }
+    
+}
 
- Game::~Game() {
-        //no destuctor needed
 
-    }
+void Game::update(BasePet* pet) {
+    pet->update_status();
+}
+
+
+void Game::end_game() {
+    cout << "Your pet has died. Game over!" << endl;
+}
+
+BasePet* Game::show_main_menu () {
+        cout << "Do you want to feed, clean, or play with your " << current_pet->get_type() << endl;
+        cout << "Enter 1 for feed" << endl;
+        cout << "Enter 2 for clean" << endl;
+        cout << "Enter 3 for play" << endl;
+
+        int choice;
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            cout << "You have chosen to feed your " << current_pet->get_type() << " !" << endl;
+            current_pet->perform_action("feed");
+            break;
+    
+        case 2:
+            cout << "You have chosen to clean your " << current_pet->get_type() << " !" << endl;
+            current_pet->perform_action("clean");
+            break;
+    
+        case 3:
+            cout << "You have chosen to play with your " << current_pet->get_type() << " !" << endl;
+            current_pet->perform_action("play");
+            break;
+    
+        default:
+            cout << "Invalid choice. Please try again." << endl;
+            return nullptr;
+        }
+        return current_pet.get();
+
+        }
+
+    // while(running) {
+    //     if (!current_pet->check_alive()){
+    //         end_game();
+    //         return;
+    //     }
+    // }
